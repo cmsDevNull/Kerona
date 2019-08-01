@@ -30,7 +30,10 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 * Rest might be done later...
 
 ## TECHNICAL tasks
-* Ingame chat implementation --> would be nice for testing
-* Multiplayer functionality --> plan how
+* Multiplayer functionality: Networking
+ - 'guiding thread' project: https://unity.com/fps-sample?utm_source=youtube&utm_medium=social&utm_campaign=community_global_announcement_2018-11-27_unite-la&utm_content=sample-fps_video-unite-session-networking
+ - detailed explanation of behind-the-scenes functionality of above project: https://www.youtube.com/watch?time_continue=1630&v=k6JTaFE7SYI
+ - another example project: https://github.com/Unity-Technologies/multiplayer
+* Ingame chat optimization
 * Procedural dungeon generation --> plan how
 * Character creation functionality --> plan how (should be done after multiplayer fundamentals)
