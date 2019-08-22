@@ -16,7 +16,6 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 * Lore of most important places
 
 ### Character writing (= Personas)
-* Player (maybe not needed, could be left open or customized)
 * Truck that kills the player (might be relevant for later in the game)
 * Raz, the (maybe-) god who resurrects the player into the new world (who is he? what does he want?)
 * The demon king (why is he king? what makes him strong?)
