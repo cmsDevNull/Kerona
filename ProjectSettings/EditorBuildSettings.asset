@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BoltDemoMenu.unity
-    guid: dee60b4a380eecb48b9769b8cdc84793
+    path: Assets/Scenes/Init.unity
+    guid: d6368fba83a86e145a80f731e949990d
   - enabled: 1
-    path: Assets/Scenes/BoltDemo.unity
-    guid: 67c8a9b5dc7a22b4394e88a594c9c020
+    path: Assets/Scenes/Setup.unity
+    guid: 8dd52a340769a5343b464f2cedbb859d
   m_configObjects: {}
