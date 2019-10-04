@@ -1,4 +1,6 @@
-﻿public class DungeonEvent
+﻿using UnityEngine;
+
+public class DungeonEvent : MonoBehaviour
 {
-    public bool isTriggered;
+    public bool isTriggered = false;
 }

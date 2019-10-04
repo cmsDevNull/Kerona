@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TestBuilder : MonoBehaviour
 {
@@ -14,7 +12,7 @@ public class TestBuilder : MonoBehaviour
         int rooms = scaleRoomBase(minRooms, players);
         initiateDungeon(testDungeon, rooms);
         for (int i = 0; i < rooms; i++) {
-            DungeonRoom room = pickRoom(i);
+            Object room = pickRoom(i, rooms - 1);
             placeRoom();
         }
     }
@@ -34,8 +32,15 @@ public class TestBuilder : MonoBehaviour
 
     private int scaleRoomBase(int roomBase, int playerCount) => roomBase + (roomBase / 2 * (playerCount - 1));
 
-    private DungeonRoom pickRoom(int roomIndex) {
-        return new DungeonRoom();
+    private Object pickRoom(int roomIndex, int lastRoomIndex) {
+        switch (roomIndex) {
+            case 1:
+                break;
+            default:
+                break;
+        }
+        Object[] possibleRooms = Resources.LoadAll("Demo/Entrances");
+        return possibleRooms[Random.Range(0, possibleRooms.Length + 1)];
     }
 
     private void placeRoom(){

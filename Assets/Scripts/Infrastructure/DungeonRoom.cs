@@ -1,19 +1,22 @@
-﻿public class DungeonRoom
+﻿using UnityEngine;
+
+public class DungeonRoom : MonoBehaviour
 {
-    public int roomID;
     public int roomWidth;
     public int roomLength;
     public int roomHeight;
+    public RoomType type;
     public Coordinate entrancePoint;
     public Coordinate[] exitPoints;
-    public RoomType type;
     public DungeonEvent[] events;
 }
 
-public enum RoomType {
+public enum RoomType 
+{
     entrance,
-    safe,
-    fight,
+    empty,
+    puzzle,
+    arena,
     treasure,
     boss
 }

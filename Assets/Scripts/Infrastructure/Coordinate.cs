@@ -1,6 +1,8 @@
-﻿public class Coordinate
+﻿using UnityEngine;
+
+public class Coordinate : MonoBehaviour
 {
-    public int x;
-    public int y;
-    public int z;
+    public float x;
+    public float y;
+    public float z;
 }
