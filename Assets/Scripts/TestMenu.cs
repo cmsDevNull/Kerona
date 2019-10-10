@@ -13,8 +13,9 @@ public class TestMenu : Bolt.GlobalEventListener
     public override void BoltStartDone() {
         if (BoltNetwork.IsServer) {
             string matchName = "Test Match";
-            BoltNetwork.SetServerInfo(matchName, null);
-            BoltNetwork.LoadScene("BoltDemo");
+            Bolt.Matchmaking.BoltMatchmaking.CreateSession(matchName, null, "BoltDemo");
+            //BoltNetwork.SetServerInfo(matchName, null);
+            //BoltNetwork.LoadScene("BoltDemo");
         }
     }
 

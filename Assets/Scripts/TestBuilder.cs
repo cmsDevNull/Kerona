@@ -3,34 +3,27 @@
 public class TestBuilder : MonoBehaviour
 {
     public int players = 3;
-    public int minRooms = 6;
+    public int minDepth = 6;
 
     private Dungeon testDungeon;
 
     void Start() {
-        // algorithm: calculate scaling --> initiate empty hypermatrix --> for every room, pick one randomly out of a list and place (instantiate) it in the hypermatrix
-        int rooms = scaleRoomBase(minRooms, players);
-        initiateDungeon(testDungeon, rooms);
-        for (int i = 0; i < rooms; i++) {
-            Object room = pickRoom(i, rooms - 1);
-            placeRoom();
+        /* algorithm: 
+        --> calculate scaled depth 
+        --> initiate empty hypermatrix 
+        --> place entrance 
+        --> place arena or empty room until depth = 0 
+        --> for every exit left, place treasure, special or dead-end room 
+        --> for the last exit, place boss room
+        */
+        int dungeonDepth = scaleDepth(minDepth, players);
+        for (int i = 0; i < dungeonDepth; i++) {
+            Object room = pickRoom(i, dungeonDepth - 1);
+            placeRoom(room);
         }
     }
 
-    private void initiateDungeon(Dungeon dungeon, int roomCount) {
-        int dungeonWidth = roomCount * 3;
-        int dungeonLength = roomCount * 3;
-        int dungeonHeight = roomCount * 2;
-        for (int x = 0; x < dungeonWidth; x++) {
-            for (int y = 0; y < dungeonLength; y++) {
-                for (int z = 0; z < dungeonHeight; z++) {
-                    dungeon.rooms[x][y][z] = null;
-                }
-            }
-        }
-    }
-
-    private int scaleRoomBase(int roomBase, int playerCount) => roomBase + (roomBase / 2 * (playerCount - 1));
+    private int scaleDepth(int baseDepth, int playerCount) => baseDepth + (baseDepth / 2 * (playerCount - 1));
 
     private Object pickRoom(int roomIndex, int lastRoomIndex) {
         switch (roomIndex) {
@@ -43,7 +36,7 @@ public class TestBuilder : MonoBehaviour
         return possibleRooms[Random.Range(0, possibleRooms.Length + 1)];
     }
 
-    private void placeRoom(){
-
+    private void placeRoom(Object room){
+        Instantiate(room);
     }
 }
