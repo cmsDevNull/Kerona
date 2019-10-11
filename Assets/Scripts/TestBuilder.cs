@@ -18,25 +18,29 @@ public class TestBuilder : MonoBehaviour
         */
         int dungeonDepth = scaleDepth(minDepth, players);
         for (int i = 0; i < dungeonDepth; i++) {
-            Object room = pickRoom(i, dungeonDepth - 1);
+            GameObject room = pickRoom(i);
             placeRoom(room);
         }
     }
 
     private int scaleDepth(int baseDepth, int playerCount) => baseDepth + (baseDepth / 2 * (playerCount - 1));
 
-    private Object pickRoom(int roomIndex, int lastRoomIndex) {
+    private GameObject pickRoom(int roomIndex) {
+        string roomDir = "Demo";
         switch (roomIndex) {
-            case 1:
+            case 0:
+                roomDir += "/Entrances";
                 break;
             default:
+                roomDir += "/Empty";
                 break;
         }
-        Object[] possibleRooms = Resources.LoadAll("Demo/Entrances");
-        return possibleRooms[Random.Range(0, possibleRooms.Length + 1)];
+        GameObject possibleRooms = Instantiate(Resources.Load("DemoEntrance1", typeof(GameObject))) as GameObject;
+        //Debug.Log(possibleRooms.transform.localScale.x);
+        return possibleRooms; //[Random.Range(0, possibleRooms.Length)];
     }
 
     private void placeRoom(Object room){
-        Instantiate(room);
+        Debug.Log(room);
     }
 }

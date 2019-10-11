@@ -111,5 +111,6 @@ MonoBehaviour:
   roomHeight: 0
   type: 1
   entrancePoint: {x: 0, y: 0, z: -0.4}
-  exitPoints: []
+  exitPoints:
+  - {x: 0, y: 0, z: 0.5}
   events: []
