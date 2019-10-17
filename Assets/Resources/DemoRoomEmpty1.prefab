@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 97857023084693796}
   - component: {fileID: 97857023084693792}
   m_Layer: 0
-  m_Name: DemoEmpty1
+  m_Name: DemoRoomEmpty1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d4ee2f154c9d7743a23398f22cd1ecb, type: 2}
+  - {fileID: 2100000, guid: addc69c1ebc391b4cb1864d417375a7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

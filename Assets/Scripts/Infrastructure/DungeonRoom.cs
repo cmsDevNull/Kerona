@@ -7,7 +7,8 @@ public class DungeonRoom : MonoBehaviour
     public int roomHeight;
     public RoomType type;
     public Vector3 entrancePoint;
-    public Vector3[] exitPoints;
+    public Vector3[] exitPointPositions;
+    public Quaternion[] exitPointRotations;
     public DungeonEvent[] events;
 }
 
