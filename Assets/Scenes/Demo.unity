@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: 1
-  minDepth: 2
+  minDepth: 4
   buildingAlgorithm: 0
 --- !u!4 &307484050
 Transform:
