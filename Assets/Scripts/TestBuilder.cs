@@ -9,6 +9,11 @@ Dungeon Building Algorithm
     4. for every exit left, place room without exit
     5. for the last exit, place boss room
 */
+
+/*
+Current issue:
+Exitpoints of rotated rooms are set incorrectly (OR: offset calculation is way wrong)
+ */
 public class TestBuilder : MonoBehaviour
 {
     public int players = 3;
@@ -21,87 +26,112 @@ public class TestBuilder : MonoBehaviour
     void Start() {
         Object[] res = Resources.LoadAll("");
 
-        int scaledDepth = scaleDepth(minDepth, players);
-        for (int i = 0; i < scaledDepth; i++) {    
-            GameObject room = pickRoom(res, i);
+        for (int i = 0; i < scaleDepth(minDepth, players); i++) {  
+            GameObject room = pickRoom(res, generateRoomName(i, "start"));
+            if (i == 0) spawnRoom(room); 
+            else placeRoom(room);
+        }
+
+        for (int i = globalExitPointPositions.Count; i > 0; i--) {
+            GameObject room = pickRoom(res, generateRoomName(i, "end"));
             placeRoom(room);
         }
     }
 
     private int scaleDepth(int baseDepth, int playerCount) => baseDepth + (baseDepth / 2 * (playerCount - 1));
 
-    private GameObject pickRoom(Object[] res, int roomIndex) {
+    private GameObject pickRoom(Object[] res, string roomName) {
+        List<GameObject> rooms = new List<GameObject>();
+        foreach (var r in res) if (r.name.Contains(roomName)) rooms.Add((GameObject)r);
+        return rooms[Random.Range(0, rooms.Count)];
+    }
+
+    private string generateRoomName(int index, string option) {
         string roomName = buildingAlgorithm.ToString();
 
-        switch (roomIndex) {
-            case 0:
-                roomName += "Entrance";
-                break;
-            default:
-                roomName += "Room";
-                switch (Random.Range(0, 2)) {
+        switch (option) {
+            case "start":
+                switch (index) {
                     case 0:
-                        roomName += "Empty";
+                        roomName += "Entrance";
                         break;
                     default:
-                        roomName += "Arena";
+                        roomName += "Room";
+                        switch (Random.Range(0, 2)) {
+                            case 0:
+                                roomName += "Empty";
+                                break;
+                            case 1:
+                                roomName += "Arena";
+                                break;
+                        }
+                    break;
+                }
+                break;
+            case "end":
+                switch (index) {
+                    case 1:
+                        roomName += "Boss";
                         break;
+                    default:
+                        roomName += "Room";
+                        switch (Random.Range(0, 3)) {
+                            case 0:
+                                roomName += "Puzzle";
+                                break;
+                            case 1:
+                                roomName += "Treasure";
+                                break;
+                            case 2:
+                                roomName += "Trap";
+                                break;
+                        }
+                    break;
                 }
                 break;
         }
 
-        List<GameObject> rooms = new List<GameObject>();
-        foreach (var r in res) if (r.name.Contains(roomName)) rooms.Add((GameObject)r);
-        GameObject room = rooms[Random.Range(0, rooms.Count)];
-        
-        return room;
+        return roomName;
+    }
+
+    private void spawnRoom(GameObject room) {
+        Instantiate(room);
+        addExitPoints(room.GetComponent<DungeonRoom>());
     }
 
     private void placeRoom(GameObject newRoom) {
-        // TODO: adjust distances
-        Vector3 nextMove = getVector();
-        nextMove = overkill(nextMove, newRoom);
         newRoom.transform.position = cullFirstFromList(globalExitPointPositions);
-        newRoom.transform.Rotate(cullFirstFromList(globalExitPointRotations));
-        newRoom.transform.position += nextMove;
-        Instantiate(newRoom);
-        addExitPoints(newRoom.GetComponent<DungeonRoom>());
+
+        Vector3 roomOffset = newRoom.GetComponent<DungeonRoom>().entrancePointPosition;
+        roomOffset = inverseVector(roomOffset);
+
+        Vector3 rot = cullFirstFromList(globalExitPointRotations);
+        if (rot != new Vector3()){
+            newRoom.transform.Rotate(rot);
+            roomOffset = mapVectorToRoomRotation(newRoom, roomOffset);
+        }
+
+        newRoom.transform.localPosition += roomOffset;
+        spawnRoom(newRoom);
     }
 
-    private Vector3 getVector() { 
-        try {
-            return globalExitPointPositions[0]; 
-        } catch (System.Exception) {
-            return new Vector3(0, 0, 0);
-        }
-    }
+    private Vector3 inverseVector(Vector3 v) { return new Vector3(-v.x, -v.y, -v.z); }
 
-    private Vector3 overkill(Vector3 epp, GameObject room){
-        // TODO: room is currently previous room, not new room
-        // also, refactor
-        if (epp.x != 0) {
-            float x = room.transform.localScale.x / 2;
-            epp += new Vector3(x, 0, 0);
-        }
-        if (epp.y != 0) {
-            float y = room.transform.localScale.y / 2;
-            epp += new Vector3(0, y, 0);
-        }
-        if (epp.z != 0) {
-            float z = room.transform.localScale.z / 2;
-            epp += new Vector3(0, 0, z);
-        }
-        return epp;
+    private Vector3 mapVectorToRoomRotation(GameObject room, Vector3 offset) {
+        int rotAngle = Mathf.RoundToInt(room.transform.localEulerAngles.y);
+        while (rotAngle > 360) rotAngle -= 360;
+        if (rotAngle < 0) rotAngle += 360;
+
+        if (rotAngle == 270) return new Vector3(-offset.z, 0, -offset.x);
+        else if (rotAngle == 180) return inverseVector(offset);
+        else if (rotAngle == 90) return new Vector3(offset.z, 0, offset.x);
+        else return offset;
     }
 
     private Vector3 cullFirstFromList(List<Vector3> list){
-        try {
-            Vector3 firstVal = list[0];
-            list.RemoveAt(0);
-            return firstVal;
-        } catch (System.Exception) {
-            return new Vector3(0, 0, 0);
-        }
+        Vector3 firstVal = list[0];
+        list.RemoveAt(0);
+        return firstVal;
     }
     
     private void addExitPoints(DungeonRoom room) {
@@ -109,14 +139,7 @@ public class TestBuilder : MonoBehaviour
         Vector3 roomRot = room.gameObject.transform.rotation.eulerAngles;
         foreach (Vector3 epp in room.exitPointPositions) globalExitPointPositions.Add(epp + roomPos);
         foreach (Vector3 epr in room.exitPointRotations) globalExitPointRotations.Add(epr + roomRot);
-//        shuffleExitPoints();        
     }
-/* 
-    private void shuffleExitPoints() {
-        globalExitPointPositions.Reverse();
-        globalExitPointRotations.Reverse();
-    }
-*/
 }
 
 public enum DungeonType
