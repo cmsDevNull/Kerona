@@ -12,7 +12,7 @@ Dungeon Building Algorithm
 
 /*
 Current issue:
-Exitpoints of rotated rooms are set incorrectly (OR: offset calculation is way wrong)
+offset after depth of 3 is calculated wrongly
  */
 public class TestBuilder : MonoBehaviour
 {
@@ -101,26 +101,26 @@ public class TestBuilder : MonoBehaviour
 
     private void placeRoom(GameObject newRoom) {
         newRoom.transform.position = cullFirstFromList(globalExitPointPositions);
+        Vector3 rot = cullFirstFromList(globalExitPointRotations);
 
         Vector3 roomOffset = newRoom.GetComponent<DungeonRoom>().entrancePointPosition;
         roomOffset = inverseVector(roomOffset);
 
-        Vector3 rot = cullFirstFromList(globalExitPointRotations);
         if (rot != new Vector3()){
             newRoom.transform.Rotate(rot);
-            roomOffset = mapVectorToRoomRotation(newRoom, roomOffset);
+            roomOffset = mapVectorToRoomRotation(rot, roomOffset);
         }
 
-        newRoom.transform.localPosition += roomOffset;
+        newRoom.transform.position += roomOffset;
         spawnRoom(newRoom);
     }
 
     private Vector3 inverseVector(Vector3 v) { return new Vector3(-v.x, -v.y, -v.z); }
 
-    private Vector3 mapVectorToRoomRotation(GameObject room, Vector3 offset) {
-        int rotAngle = Mathf.RoundToInt(room.transform.localEulerAngles.y);
+    private Vector3 mapVectorToRoomRotation(Vector3 rot, Vector3 offset) {
+        int rotAngle = Mathf.RoundToInt(rot.y);
         while (rotAngle > 360) rotAngle -= 360;
-        if (rotAngle < 0) rotAngle += 360;
+        while (rotAngle < 0) rotAngle += 360;
 
         if (rotAngle == 270) return new Vector3(-offset.z, 0, -offset.x);
         else if (rotAngle == 180) return inverseVector(offset);
