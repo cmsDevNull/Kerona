@@ -100,31 +100,28 @@ public class TestBuilder : MonoBehaviour
     }
 
     private void placeRoom(GameObject newRoom) {
+        newRoom.transform.rotation = Quaternion.identity;
+
         newRoom.transform.position = cullFirstFromList(globalExitPointPositions);
+        Vector3 roomOffset = inverseVector(newRoom.GetComponent<DungeonRoom>().entrancePointPosition);
         Vector3 rot = cullFirstFromList(globalExitPointRotations);
-
-        Vector3 roomOffset = newRoom.GetComponent<DungeonRoom>().entrancePointPosition;
-        roomOffset = inverseVector(roomOffset);
-
-        if (rot != new Vector3()){
-            newRoom.transform.Rotate(rot);
-            roomOffset = mapVectorToRoomRotation(rot, roomOffset);
-        }
+        newRoom.transform.Rotate(rot);
+        roomOffset = getRotatedVector(newRoom.transform.rotation.eulerAngles, roomOffset);
 
         newRoom.transform.position += roomOffset;
         spawnRoom(newRoom);
     }
 
-    private Vector3 inverseVector(Vector3 v) { return new Vector3(-v.x, -v.y, -v.z); }
+    private Vector3 inverseVector(Vector3 v) { return new Vector3(-v.x, v.y, -v.z); }
 
-    private Vector3 mapVectorToRoomRotation(Vector3 rot, Vector3 offset) {
+    private Vector3 getRotatedVector(Vector3 rot, Vector3 offset) {
         int rotAngle = Mathf.RoundToInt(rot.y);
         while (rotAngle > 360) rotAngle -= 360;
         while (rotAngle < 0) rotAngle += 360;
 
-        if (rotAngle == 270) return new Vector3(-offset.z, 0, -offset.x);
+        if (rotAngle == 270) return new Vector3(-offset.z, offset.y, -offset.x);
         else if (rotAngle == 180) return inverseVector(offset);
-        else if (rotAngle == 90) return new Vector3(offset.z, 0, offset.x);
+        else if (rotAngle == 90) return new Vector3(offset.z, offset.y, offset.x);
         else return offset;
     }
 
@@ -137,8 +134,15 @@ public class TestBuilder : MonoBehaviour
     private void addExitPoints(DungeonRoom room) {
         Vector3 roomPos = room.gameObject.transform.position;
         Vector3 roomRot = room.gameObject.transform.rotation.eulerAngles;
-        foreach (Vector3 epp in room.exitPointPositions) globalExitPointPositions.Add(epp + roomPos);
-        foreach (Vector3 epr in room.exitPointRotations) globalExitPointRotations.Add(epr + roomRot);
+
+        for (int i = 0; i < room.exitPointPositions.Length; i++) {
+            Vector3 epp = room.exitPointPositions[i];
+            Vector3 epr = room.exitPointRotations[i];
+            epp = getRotatedVector(roomRot + epr, epp);
+            Vector3 newRoomPos = epp + roomPos;
+            globalExitPointPositions.Add(newRoomPos);
+            globalExitPointRotations.Add(epr + roomRot);
+        }
     }
 }
 
