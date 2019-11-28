@@ -4,16 +4,19 @@ using UnityEngine;
 /*
 Dungeon Building Algorithm 
     1. calculate scaled depth 
-    2. place entrance 
-    3. place room with exits until depth = 0 
-    4. for every exit left, place room without exit
+    2. pick, place and spawn a random entrance room and add its exit points
+    3. repeat the formula below for all rooms with exits until depth = 0
+        a. pick random room 
+        b. reset room rotation
+        c. set room position to next exit point position
+        d. rotate room to next exit point rotation
+        e. add offset (distance from entrance point of new room to center of new room) to position
+        f. spawn room
+        g. add new exit point positions & rotations
+    4. for every exit left, place room without exit (steps a-f above)
     5. for the last exit, place boss room
 */
 
-/*
-Current issue:
-offset after depth of 3 is calculated wrongly
- */
 public class TestBuilder : MonoBehaviour
 {
     public int players = 3;
