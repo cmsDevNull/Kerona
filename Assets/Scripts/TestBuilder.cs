@@ -2,6 +2,8 @@
 using UnityEngine;
 
 /*
+Dungeonrooms may collide with each - use height differences to avoid collisions. (or build a safety net around it later)
+
 Dungeon Building Algorithm 
     1. calculate scaled depth 
     2. pick, place and spawn a random entrance room and add its exit points
