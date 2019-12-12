@@ -25,10 +25,14 @@ public class TestBuilder : MonoBehaviour
     public int minDepth = 6;
     public DungeonType buildingAlgorithm;
 
+    public static bool isBuilding = true;
+
     List<Vector3> globalExitPointPositions = new List<Vector3>();
     List<Vector3> globalExitPointRotations = new List<Vector3>();
 
     void Start() {
+        isBuilding = true;
+
         Object[] res = Resources.LoadAll("");
 
         for (int i = 0; i < scaleDepth(minDepth, players); i++) {  
@@ -41,6 +45,8 @@ public class TestBuilder : MonoBehaviour
             GameObject room = pickRoom(res, generateRoomName(i, "end"));
             placeRoom(room);
         }
+
+        isBuilding = false;
     }
 
     private int scaleDepth(int baseDepth, int playerCount) => baseDepth + (baseDepth / 2 * (playerCount - 1));
@@ -149,6 +155,8 @@ public class TestBuilder : MonoBehaviour
             globalExitPointRotations.Add(epr + roomRot);
         }
     }
+
+    public bool getIsBuilding() => isBuilding;
 }
 
 public enum DungeonType

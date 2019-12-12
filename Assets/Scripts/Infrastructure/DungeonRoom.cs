@@ -6,7 +6,6 @@ public class DungeonRoom : MonoBehaviour
     public Vector3 entrancePointPosition;
     public Vector3[] exitPointPositions;
     public Vector3[] exitPointRotations;
-    public DungeonEvent[] events;
 }
 
 public enum RoomType 

@@ -118,7 +118,8 @@ MonoBehaviour:
   exitPointRotations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 270, z: 0}
-  events: []
+  events:
+  - {fileID: 0}
 --- !u!1 &2329397779196112768
 GameObject:
   m_ObjectHideFlags: 0
