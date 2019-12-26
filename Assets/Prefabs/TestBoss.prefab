@@ -119,9 +119,9 @@ GameObject:
   - component: {fileID: 8617377141260245193}
   - component: {fileID: 3475712533734949979}
   - component: {fileID: 3308961652476246899}
-  - component: {fileID: 1568309979360268327}
+  - component: {fileID: 6700112984191094579}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: TestBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 8587725635308605406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children:
   - {fileID: 3149783359882463462}
   m_Father: {fileID: 0}
@@ -202,7 +202,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1568309979360268327
+--- !u!114 &6700112984191094579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8587725635308605406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b40880b961071c4fa8fb4309b5f551d, type: 3}
+  m_Script: {fileID: 11500000, guid: 523138a320cd7f94480bb685a1afd808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jumpOnMe: {fileID: 5157722378683585677}

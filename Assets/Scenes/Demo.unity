@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: 1
-  minDepth: 10
+  minDepth: 20
   buildingAlgorithm: 0
 --- !u!4 &307484050
 Transform:
@@ -388,8 +388,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644310764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.3774095, y: 0.1780428, z: -0.07418811, w: -0.90573674}
+  m_LocalPosition: {x: -0.011129379, y: 31.982151, z: -18.602907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
