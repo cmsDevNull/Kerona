@@ -15,7 +15,7 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 * Sketches of most important places
 * Lore of most important places
 
-### Character writing (= Personas)
+### Character writing
 * Truck that kills the player (might be relevant for later in the game)
 * Raz, the (maybe-) god who resurrects the player into the new world (who is he? what does he want?)
 * The demon king (why is he king? what makes him strong?)
@@ -25,14 +25,18 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 
 ### Storytelling (requires: Worldbuilding.Lore)
 * Prolog: Player dies and gets resurrected. How does it play out?
-* Act I: Player's arrival in Kerona. What (and why) happens?
-* Rest might be done later...
+* Act I: Player's arrival in Kerona. What happens (and why)?
 
 ## TECHNICAL tasks
-* Multiplayer functionality: Networking
- - 'guiding thread' project: https://unity.com/fps-sample?utm_source=youtube&utm_medium=social&utm_campaign=community_global_announcement_2018-11-27_unite-la&utm_content=sample-fps_video-unite-session-networking
- - detailed explanation of behind-the-scenes functionality of above project: https://www.youtube.com/watch?time_continue=1630&v=k6JTaFE7SYI
- - another example project: https://github.com/Unity-Technologies/multiplayer
+### Programming
+* Multiplayer fundamentals: Implement actual BOLT integration
 * Ingame chat optimization
-* Procedural dungeon generation --> plan how
 * Character creation functionality --> plan how (should be done after multiplayer fundamentals)
+* Combat system
+* Enemy AI
+* Health system
+
+### Modeling
+* Cave Rooms
+* Hub = City (or Ruins) of Kerona
+* Pre-Reincarnation Environments
