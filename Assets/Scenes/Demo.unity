@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466e794867e309c499831788de4da697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: 1
-  minDepth: 20
+  players: 5
+  minDepth: 40
   buildingAlgorithm: 0
 --- !u!4 &307484050
 Transform:

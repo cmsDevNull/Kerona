@@ -14,8 +14,8 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 3. Climate map that displays cold and hot regions (climate zones)
 * Sketches & Lore of most important places
 1. Player's home & work environment
-2. The big 5 cities
-2. a) City of Kerona
+2. The big 5 cities (animal themed)
+2. a) City of Kerona (turtle)
 3. Goblin Cave
 
 ### Character writing
