@@ -2,8 +2,8 @@
 A First-Person Multiplayer Dungeon Crawler RPG.
 
 # Team DevNull
-* HARING Martin
-* MISCHAK David
+* HARING Martin (Director and Lead Developer)
+* MISCHAK David (Lead 3D Artist)
 
 # TODO
 ## CREATIVE tasks
@@ -16,7 +16,14 @@ A First-Person Multiplayer Dungeon Crawler RPG.
 1. Player's home & work environment
 2. The big 5 cities (animal themed)
 2. a) City of Kerona (turtle)
+2. b) City of ... (snake)
+2. c) City of ... (bull)
+2. d) City of ... (gorilla)
+2. e) City of ... (lion)
 3. Goblin Cave
+4. Mage's tower
+5. Jungle
+6. Sky Fortress
 
 ### Character writing
 * Truck that kills the player (might be relevant for later in the game)
