@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6153069931393250026}
   - component: {fileID: 8750424896012683300}
   m_Layer: 0
-  m_Name: Pickup_Shield
+  m_Name: Pickup_Heal_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
