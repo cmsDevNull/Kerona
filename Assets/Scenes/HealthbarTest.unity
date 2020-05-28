@@ -121,6 +121,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!102 &28329571 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 1003571752078710006, guid: 16bbafa42f5da844ab607679081334d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1238579626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &255052795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5799199086454426722, guid: 16bbafa42f5da844ab607679081334d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1238579626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &255052797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255052795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24c31ff680f4bf4eaa92371a0a97840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1642303982}
+  healthText: {fileID: 28329571}
+  overlayFull: {fileID: 0}
+  overlayGood: {fileID: 0}
+  overlayBad: {fileID: 0}
+  overlayCritical: {fileID: 0}
+  overlayDying: {fileID: 0}
 --- !u!1001 &323960853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,6 +571,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: -6.5, z: 0}
+--- !u!1 &1642303981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6764868126764685843, guid: 16bbafa42f5da844ab607679081334d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1238579626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1642303982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642303981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1770470c6197feb4faf53dbe178a739b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localHealth: 3
 --- !u!1 &1732914850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5090104345581047899, guid: 6649e018ad82b82489a147d1b733e642,
