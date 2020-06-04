@@ -1,5 +1,5 @@
 # Kerona
-A First-Person Multiplayer Dungeon Crawler RPG.
+The test environment for Kame. A First-Person Multiplayer Dungeon Crawler RPG.
 
 # Team DevNull
 * HARING Martin (Director and Lead Developer)
